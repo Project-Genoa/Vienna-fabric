@@ -1,0 +1,86 @@
+plugins {
+    id 'fabric-loom' version '1.5-SNAPSHOT'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+version = '0.0.1'
+
+base {
+    archivesName = "vienna"
+}
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.20.4"
+    mappings "net.fabricmc:yarn:1.20.4+build.1:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.15.0"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.91.1+1.20.4"
+
+    modImplementation "micheal65536.fountain.fabric:fountain:0.0.1"
+    implementation shadow("micheal65536.vienna:eventbus-client:0.0.1-SNAPSHOT")
+    implementation shadow("micheal65536.vienna:buildplate-connector-model:0.0.1-SNAPSHOT")
+    implementation shadow("com.google.code.gson:gson:2.10.1")
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "vienna" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+}
+
+remapJar {
+    dependsOn(shadowJar)
+    inputFile = tasks.shadowJar.archiveFile
+}
+
+java {
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'micheal65536.vienna.fabric'
+            artifactId 'vienna'
+            version project.version
+
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
+}

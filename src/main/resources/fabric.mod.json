@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "vienna",
+  "version": "${version}",
+  "name": "Vienna",
+  "description": "Fabric mod component for Vienna",
+  "authors": [
+    "micheal65536"
+  ],
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "micheal65536.vienna.fabric.Main"
+    ]
+  },
+  "mixins": [
+    "vienna.mixins.eventbus.json",
+    "vienna.mixins.startupshutdown.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-api": "*",
+    "fountain": "*"
+  }
+}
