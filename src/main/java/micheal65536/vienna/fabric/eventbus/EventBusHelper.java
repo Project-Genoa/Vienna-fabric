@@ -98,7 +98,6 @@ public final class EventBusHelper
 		return completableFuture;
 	}
 
-	@NotNull
 	public <T> T doRequestResponseSync(@NotNull String requestType, Object requestObject, @NotNull Class<T> responseClass)
 	{
 		CompletableFuture<T> completableFuture = this.doRequestResponseAsync(requestType, requestObject, responseClass);
@@ -107,15 +106,18 @@ public final class EventBusHelper
 			try
 			{
 				T response = completableFuture.get();
-				if (response == null)
-				{
-					throw new EventBusException("Received null response for request");
-				}
 				return response;
 			}
 			catch (ExecutionException exception)
 			{
-				throw new EventBusException("Request-response completed with exception", exception);
+				if (exception.getCause() instanceof EventBusException)
+				{
+					throw new EventBusException("Request-response completed with exception", exception.getCause());
+				}
+				else
+				{
+					throw new AssertionError(exception);
+				}
 			}
 			catch (InterruptedException exception)
 			{
