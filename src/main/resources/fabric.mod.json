@@ -15,6 +15,7 @@
   },
   "mixins": [
     "vienna.mixins.eventbus.json",
+    "vienna.mixins.playerid.json",
     "vienna.mixins.startupshutdown.json"
   ],
   "depends": {

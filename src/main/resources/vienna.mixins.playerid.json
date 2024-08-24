@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "micheal65536.vienna.fabric.playerid.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "server": [
+    "PlayerManagerMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
