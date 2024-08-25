@@ -2,9 +2,8 @@
   "required": true,
   "package": "micheal65536.vienna.fabric.health.mixins",
   "compatibilityLevel": "JAVA_17",
-  "server": [
+  "mixins": [
     "HungerManagerMixin",
-    "HungerManagerMixin$HungerManagerAccessor",
     "PlayerEntityMixin"
   ],
   "injectors": {

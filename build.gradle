@@ -27,12 +27,9 @@ dependencies {
 }
 
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         "vienna" {
             sourceSet sourceSets.main
-            sourceSet sourceSets.client
         }
     }
 }

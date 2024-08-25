@@ -7,9 +7,15 @@
   "authors": [
     "micheal65536"
   ],
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
+    "main": [
+      "micheal65536.vienna.fabric.Main"
+    ],
     "server": [
+      "micheal65536.vienna.fabric.Main"
+    ],
+    "client": [
       "micheal65536.vienna.fabric.Main"
     ]
   },
