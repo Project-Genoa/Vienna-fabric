@@ -20,6 +20,7 @@
     ]
   },
   "mixins": [
+    "vienna.mixins.boosts.json",
     "vienna.mixins.eventbus.json",
     "vienna.mixins.health.json",
     "vienna.mixins.playerid.json",

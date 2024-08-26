@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "micheal65536.vienna.fabric.boosts.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityMixin",
+    "PlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

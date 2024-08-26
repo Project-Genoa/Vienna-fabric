@@ -6,6 +6,8 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import micheal65536.vienna.fabric.boosts.BoostStatusEffects;
+
 public class Main implements ModInitializer, DedicatedServerModInitializer, ClientModInitializer
 {
 	public static final Logger LOGGER = LoggerFactory.getLogger("vienna");
@@ -13,7 +15,7 @@ public class Main implements ModInitializer, DedicatedServerModInitializer, Clie
 	@Override
 	public void onInitialize()
 	{
-		// empty
+		BoostStatusEffects.init();
 	}
 
 	@Override

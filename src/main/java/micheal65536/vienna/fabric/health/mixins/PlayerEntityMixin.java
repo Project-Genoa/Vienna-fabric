@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import micheal65536.vienna.fabric.boosts.BoostStatusEffects;
+
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin
 {
@@ -30,7 +32,13 @@ public class PlayerEntityMixin
 	{
 		if (item.isFood())
 		{
-			((PlayerEntity) (Object) this).heal(item.getFoodComponent().getHunger());
+			float health = item.getFoodComponent().getHunger();
+			if (((PlayerEntity) (Object) this).hasStatusEffect(BoostStatusEffects.EATING))
+			{
+				int level = ((PlayerEntity) (Object) this).getStatusEffect(BoostStatusEffects.EATING).getAmplifier() + 1;
+				health *= 1.0f + (level * 0.25f);
+			}
+			((PlayerEntity) (Object) this).heal(health);
 		}
 	}
 }
