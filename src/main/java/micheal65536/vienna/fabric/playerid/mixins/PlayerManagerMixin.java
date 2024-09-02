@@ -29,7 +29,7 @@ public class PlayerManagerMixin
 		if (earthPlayerId != null)
 		{
 			Main.LOGGER.info("Player {} {} is Vienna player {}", serverPlayerEntity.getName().getString(), serverPlayerEntity.getGameProfile().getId().toString(), earthPlayerId);
-			ViennaPlayerJoinHandler.handleJoin((EarthPlayer) serverPlayerEntity);
+			ViennaPlayerJoinHandler.handleJoin(serverPlayerEntity);
 		}
 		else
 		{
