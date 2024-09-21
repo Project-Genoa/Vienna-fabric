@@ -20,7 +20,6 @@ public final class ViennaPlayerJoinHandler
 		InitialPlayerStateResponse initialPlayerStateResponse = ((EventBusMinecraftServer) serverPlayerEntity.server).getEventBusHelper().doRequestResponseSync("getInitialPlayerState", playerId, InitialPlayerStateResponse.class);
 		if (initialPlayerStateResponse != null)
 		{
-			serverPlayerEntity.setHealth(initialPlayerStateResponse.health());
 			for (InitialPlayerStateResponse.BoostStatusEffect boostStatusEffect : initialPlayerStateResponse.boostStatusEffects())
 			{
 				serverPlayerEntity.addStatusEffect(new StatusEffectInstance(
@@ -43,6 +42,7 @@ public final class ViennaPlayerJoinHandler
 						false
 				));
 			}
+			serverPlayerEntity.setHealth(initialPlayerStateResponse.health());
 		}
 		else
 		{
